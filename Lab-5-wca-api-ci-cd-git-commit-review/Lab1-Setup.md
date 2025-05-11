@@ -1,48 +1,48 @@
-# Lab1: Envrionment Setup
+# Lab1: 환경 설정
 
-This document gives step-by-step guide to finish Lab 1.
+이 문서는 Lab 1을 완료하기 위한 단계별 가이드를 제공합니다.
 
 ## Lab1 covers:
 
-- Configure Smee
-- Configure github webhooks
-- Setting all environment variables
+- Smee 설정
+- GitHub 웹훅 설정
+- 모든 환경 변수 설정
 
-### 1. Code Asset Download
-- Git clone the workshop repository which has all the necessary files required to run the labs
+### 1. Lab을 수행하기 위한 현재 directory 확인
+- Lab-5-wca-api-ci-cd-git-commit-review 폴더를 확인하고 wca-ci-cd directory가 있는지 확인한다.
 
-### 2. Install required python library and Configure Smee 
-- go into the ci-cd-wca folder
+### 2. 필요한 Python 라이브러리 설치 및 Smee 설정
+- wca-ci-cd 폴더로 이동
    ```bash
    cd wca-ci-cd
    pip install -r requirements.txt
    npm install --global smee-client
    ```
-- Visit https://smee.io/new
-   - Copy the URL provided
+- https://smee.io/new 방문
+   - 제공된 URL을 복사합니다
 
 
-### 3. Configure github webhook (for your personal repository for which you need to monitor push request)
-   - Go to your repository's Settings > Webhooks (this is the repository for which you want to run automatic ci/cd evaluations)
-   - Click "Add webhook"
-   - Set Payload URL to your smee.io URL
+### 3. GitHub 웹훅 설정 (푸시 요청을 모니터링할 개인 저장소용)
+   - 저장소의 Settings > Webhooks로 이동 (자동 ci/cd 평가를 실행할 저장소)
+   - "Add webhook" 클릭
+   - Payload URL을 smee.io URL로 설정
    - Content type: application/json
-   - Set Secrets: add any value of your choice
-   - Select events: Choose "Just the push event"
+   - Secrets: 원하는 값을 추가
+   - Select events: "Just the push event" 선택
 
 
-### 4. Set environment variables
-- Create a `.env` file in the project root (wca-ci-cd folder):
+### 4. 환경 변수 설정
+- 프로젝트 루트(wca-ci-cd 폴더)에 `.env` 파일 생성:
    ```bash
-   # Required: Your smee.io URL for webhook forwarding
+   # 필수: 웹훅 전달을 위한 smee.io URL
    export SMEE_URL='https://smee.io/your-unique-url'
    
-   # Required: GitHub personal access token for API access
+   # 필수: API 접근을 위한 GitHub 개인 액세스 토큰
    export GITHUB_TOKEN='your-github-token'
    
-   # Required: Watson Code Assistant API key
+   # 필수: Watson Code Assistant API 키
    export IAM_APIKEY='your-wca-api-key'
    
-   # Optional: Webhook secret for added security
+   # 선택: 보안을 위한 웹훅 시크릿
    export GITHUB_WEBHOOK_SECRET='your-webhook-secret'
    ```
